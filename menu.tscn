@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://br2hg8a1tg07r"]
+
+[ext_resource type="Script" uid="uid://drxr0tkosx8qr" path="res://menu.gd" id="1_4hy44"]
+[ext_resource type="Texture2D" uid="uid://cmnglmqd8qsew" path="res://assetpack/parallax/skies/Sky_sky.png" id="2_ytr4m"]
+[ext_resource type="FontFile" uid="uid://whmwal8iy57c" path="res://assetpack/parallax/Diary Story.otf" id="3_l48gv"]
+[ext_resource type="FontFile" uid="uid://doang8jip0pqn" path="res://assetpack/Diary Story.otf" id="4_ecwwl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2noi3"]
+texture = ExtResource("2_ytr4m")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6p1ee"]
+bg_color = Color(0.4392157, 0.6392157, 0.6862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mb0hv"]
+bg_color = Color(0.4382567, 0.6380148, 0.68601596, 1)
+
+[node name="Menu" type="Control" unique_id=972821128]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_4hy44")
+
+[node name="Fundo" type="Panel" parent="." unique_id=392977929]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1110.0
+offset_bottom = 966.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2noi3")
+
+[node name="Titulo" type="Label" parent="." unique_id=1651489363]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 352.0
+offset_top = 67.0
+offset_right = 839.0
+offset_bottom = 338.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_l48gv")
+theme_override_font_sizes/font_size = 200
+text = "Paralax"
+
+[node name="Botões" type="VBoxContainer" parent="." unique_id=1485778086]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 360.0
+offset_right = 898.0
+offset_bottom = 549.0
+theme_override_constants/separation = 9
+
+[node name="Jogar" type="Button" parent="Botões" unique_id=433231798]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ecwwl")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_6p1ee")
+text = "Jogar"
+
+[node name="Sair" type="Button" parent="Botões" unique_id=1787331330]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ecwwl")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb0hv")
+text = "Sair"
+
+[connection signal="pressed" from="Botões/Jogar" to="." method="_on_jogar_pressed"]
+[connection signal="pressed" from="Botões/Sair" to="." method="_on_sair_pressed"]
