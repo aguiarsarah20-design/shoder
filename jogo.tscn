@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://bthyrkioybe83"]
 
 [ext_resource type="Texture2D" uid="uid://bohobbd66lsg6" path="res://assetpack/Bonus (player ship)/sprite_player_spaceship_up_down.png" id="1_kxg5b"]
+[ext_resource type="Script" uid="uid://b7v3obnxu4rn4" path="res://player.gd" id="1_ysdx3"]
 [ext_resource type="Texture2D" uid="uid://cmnglmqd8qsew" path="res://assetpack/parallax/skies/Sky_sky.png" id="2_qn35j"]
 [ext_resource type="Texture2D" uid="uid://b2xoi1iuw5kj8" path="res://assetpack/parallax/skies/Sky_back_mountain.png" id="3_8c340"]
+[ext_resource type="Script" uid="uid://bch2v8spe7axi" path="res://parallax_background.gd" id="3_t8pok"]
 [ext_resource type="Texture2D" uid="uid://b1gsekqkg51x8" path="res://assetpack/parallax/skies/sky_front_mountain.png" id="4_45nkh"]
 [ext_resource type="Texture2D" uid="uid://0icgnfybqk0l" path="res://assetpack/parallax/skies/sky_clouds.png" id="5_ysdx3"]
+[ext_resource type="Script" uid="uid://cpji7ndqbkv4c" path="res://gerador_inimigos.gd" id="8_mtw28"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8pok"]
 radius = 46.0
@@ -82,6 +85,7 @@ size = Vector2(1162, 30)
 [node name="jogo" type="Node2D" unique_id=513262049]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=488332571]
+script = ExtResource("1_ysdx3")
 
 [node name="CorpoPlayer" type="CollisionShape2D" parent="Player" unique_id=750751987]
 position = Vector2(372, 220)
@@ -114,10 +118,11 @@ position = Vector2(577, 646)
 shape = SubResource("RectangleShape2D_mb0hv")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=106304125]
+script = ExtResource("3_t8pok")
 
 [node name="FundoCeu" type="ParallaxLayer" parent="ParallaxBackground" unique_id=117326306]
 motion_scale = Vector2(0.05, 0.05)
-motion_mirroring = Vector2(1152, 0)
+motion_mirroring = Vector2(1150.18, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/FundoCeu" unique_id=340019847]
 position = Vector2(585.00006, 501.99997)
@@ -125,6 +130,7 @@ scale = Vector2(0.6052631, 0.99799997)
 texture = ExtResource("2_qn35j")
 
 [node name="FundoMontanha" type="ParallaxLayer" parent="ParallaxBackground" unique_id=763302698]
+motion_scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/FundoMontanha" unique_id=1136109750]
 position = Vector2(583.00006, 334)
@@ -132,6 +138,8 @@ scale = Vector2(0.6063158, 0.64300007)
 texture = ExtResource("3_8c340")
 
 [node name="FrenteMontanha" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1909466564]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1.21, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/FrenteMontanha" unique_id=1748175969]
 position = Vector2(584, 327.25003)
@@ -139,8 +147,18 @@ scale = Vector2(0.6094737, 0.6564999)
 texture = ExtResource("4_45nkh")
 
 [node name="FrenteNuvens" type="ParallaxLayer" parent="ParallaxBackground" unique_id=125303494]
+motion_scale = Vector2(3, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/FrenteNuvens" unique_id=1090231620]
 position = Vector2(582, 532)
 scale = Vector2(0.60605264, 0.26)
 texture = ExtResource("5_ysdx3")
+
+[node name="GeradorInimigos" type="Node2D" parent="." unique_id=1010603058]
+script = ExtResource("8_mtw28")
+
+[node name="Timer" type="Timer" parent="GeradorInimigos" unique_id=725289519]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="GeradorInimigos/Timer" to="Player" method="_on_timer_timeout"]
