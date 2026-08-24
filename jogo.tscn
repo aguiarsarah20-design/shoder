@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bch2v8spe7axi" path="res://parallax_background.gd" id="3_t8pok"]
 [ext_resource type="Texture2D" uid="uid://b1gsekqkg51x8" path="res://assetpack/parallax/skies/sky_front_mountain.png" id="4_45nkh"]
 [ext_resource type="Texture2D" uid="uid://0icgnfybqk0l" path="res://assetpack/parallax/skies/sky_clouds.png" id="5_ysdx3"]
-[ext_resource type="Script" uid="uid://cpji7ndqbkv4c" path="res://gerador_inimigos.gd" id="8_mtw28"]
+[ext_resource type="Script" uid="uid://bc1ehb03m762g" path="res://gerador_inimigos_2.gd" id="8_ysdx3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8pok"]
 radius = 46.0
@@ -154,11 +154,11 @@ position = Vector2(582, 532)
 scale = Vector2(0.60605264, 0.26)
 texture = ExtResource("5_ysdx3")
 
-[node name="GeradorInimigos" type="Node2D" parent="." unique_id=1010603058]
-script = ExtResource("8_mtw28")
+[node name="GeradorInimigos2" type="Node2D" parent="." unique_id=202244167]
+script = ExtResource("8_ysdx3")
 
-[node name="Timer" type="Timer" parent="GeradorInimigos" unique_id=725289519]
+[node name="Timer" type="Timer" parent="GeradorInimigos2" unique_id=725289519]
 wait_time = 2.0
 autostart = true
 
-[connection signal="timeout" from="GeradorInimigos/Timer" to="Player" method="_on_timer_timeout"]
+[connection signal="timeout" from="GeradorInimigos2/Timer" to="Player" method="_on_timer_timeout"]
